@@ -1,15 +1,7 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*; 
 import java.util.Random;
-import java.util.Timer;
-
-import javax.swing.JPanel;
 
 public class gamePanel extends JPanel implements ActionListener{
 
@@ -20,7 +12,7 @@ public class gamePanel extends JPanel implements ActionListener{
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HIGHT)/UNIT_SIZE; 
     //für unseren Timer den wir später inplementieren wollen. Je höher unser
     //Wert, desto langsamer ist unsere Schlange 
-    static  final int DELAY = 75;
+    static final int DELAY = 75;
     //enthält alle x koordinaten der Schlange, auch den Kopf der Schlange
     final int x[] = new int[GAME_UNITS];
     //enthält alle y koordinaten der Schlange 
@@ -32,7 +24,7 @@ public class gamePanel extends JPanel implements ActionListener{
     int appleX; 
     int appleY;
     //sagt uns in welche Richtig die Schlange läuft wenn wir das Spiel starten
-    // R L U D
+    // R L U D sind mögliche Richtungen 
     char direction = 'R'; 
     boolean running = false; 
     Timer timer; 
@@ -55,11 +47,16 @@ public class gamePanel extends JPanel implements ActionListener{
 
         newApple();
         running = true; 
-        timer = new Timer(DELAY.this);
+        // Es gibt 2 Pakete mit Timer, wir 
+        //brauchen Swing hier nicht util 
+        timer = new Timer(DELAY, this);
+        timer.start();
 
     }
 
     public void paintComponent(Graphics g){
+
+        super.paintComponent(g);
 
     }
 
