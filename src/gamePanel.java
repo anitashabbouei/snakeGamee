@@ -57,10 +57,20 @@ public class gamePanel extends JPanel implements ActionListener{
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);
+        draw(g);
 
     }
 
     public void draw(Graphics g){
+
+        for(int i = 0; i < SCREEN_HIGHT/UNIT_SIZE; i++){
+            //zeichen hier kästchen Grid
+            g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HIGHT);
+            g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
+        }
+
+        g.setColor(Color.red);
+        g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
     }
 
@@ -68,7 +78,12 @@ public class gamePanel extends JPanel implements ActionListener{
 
     }
 
+    /*
+     * Bestimmen in dieser Methode die Koordinaten jedes neuen Apfels
+     */
     public void newApple(){
+        appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))* UNIT_SIZE;
+        appleY = random.nextInt((int)(SCREEN_HIGHT/UNIT_SIZE))* UNIT_SIZE;
 
     }
 
