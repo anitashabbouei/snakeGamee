@@ -72,9 +72,47 @@ public class gamePanel extends JPanel implements ActionListener{
         g.setColor(Color.red);
         g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
+        //Head and Body of the Snake
+
+        for(int i = 0; i< bodyParts;i++){
+            if (i==0){
+                g.setColor(Color.green);
+                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+            }
+            else{
+                g.setColor(new Color(45, 180, 0));
+                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+        }
+
     }
 
+    /*
+     * Mit dieser Methode bewegen wir die Schlange 
+     */
     public void move (){
+        for (int i = bodyParts; i>0;i--){
+            x[i] = x[i-1];
+            y[i] = y[i-1];
+        }
+
+        switch (direction){
+            case 'U': 
+                y[0] = y[0] - UNIT_SIZE;
+                break; 
+            
+            case 'D': 
+                y[0] = y[0] + UNIT_SIZE;
+                break       ;
+            
+            case 'L': 
+                x[0] = x[0] - UNIT_SIZE;
+                break; 
+
+            case 'R': 
+                x[0] = x[0] - UNIT_SIZE;
+                break; 
+
+        }
 
     }
 
@@ -93,6 +131,11 @@ public class gamePanel extends JPanel implements ActionListener{
 
     public void checkCollisions(){
 
+        //check if the head of the snake touches its body
+
+        //check if the snake collides with the Wall
+
+
     }
 
     public void gameOver(){
@@ -102,6 +145,14 @@ public class gamePanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+
+        if (running) {
+            move();
+            checkAppel();
+            checkCollisions();
+
+        }
+        repaint();
     }
 
     public class MyKeyAddaptor extends KeyAdapter{
