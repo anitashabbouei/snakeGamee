@@ -93,6 +93,7 @@ public class gamePanel extends JPanel implements ActionListener{
         for (int i = bodyParts; i>0;i--){
             x[i] = x[i-1];
             y[i] = y[i-1];
+            
         }
 
         switch (direction){
