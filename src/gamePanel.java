@@ -49,6 +49,7 @@ public class gamePanel extends JPanel implements ActionListener{
         running = true; 
         // Es gibt 2 Pakete mit Timer, wir 
         //brauchen Swing hier nicht util 
+        draw(this.getGraphics());
         timer = new Timer(DELAY, this);
         timer.start();
 
