@@ -163,6 +163,7 @@ public class gamePanel extends JPanel implements ActionListener{
         public void keyPressed(KeyEvent e ){
             // Hier wird einmal festgelegt, welche Taste gedrückt wurde 
             
+            
         }
     }
 
