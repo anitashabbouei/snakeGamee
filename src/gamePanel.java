@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*; 
 import java.util.Random;
 
-public class gamePanel extends JPanel implements ActionListener{
+public class gamePanel extends JPanel implements ActionListener {
 
     //deklarien alle Variable die wir brauchen werden 
     static final int SCREEN_WIDTH = 600;
@@ -45,11 +45,14 @@ public class gamePanel extends JPanel implements ActionListener{
 
     public void startGame(){
 
+        //Diese Methode muss ich noch bearbeiten. Kann Grid z.B. nicht sehen 
+
+        //draw(getGraphics());
         newApple();
         running = true; 
         // Es gibt 2 Pakete mit Timer, wir 
-        //brauchen Swing hier nicht util 
-        draw(this.getGraphics());
+        //brauchen Swing hier, nicht util 
+        //draw(this.getGraphics());
         timer = new Timer(DELAY, this);
         timer.start();
 
@@ -68,6 +71,7 @@ public class gamePanel extends JPanel implements ActionListener{
             //zeichen hier kästchen Grid
             g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HIGHT);
             g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
+            System.out.println("I love food");
         }
 
         g.setColor(Color.red);
@@ -79,13 +83,13 @@ public class gamePanel extends JPanel implements ActionListener{
             if (i==0){
                 g.setColor(Color.green);
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
-            }
-            else{
+            } else { 
                 g.setColor(new Color(45, 180, 0));
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+            }
         }
 
-    }
+    }   
 
     /*
      * Mit dieser Methode bewegen wir die Schlange 
@@ -97,7 +101,7 @@ public class gamePanel extends JPanel implements ActionListener{
             
         }
 
-        switch (direction){
+        switch (direction) {
             case 'U': 
                 y[0] = y[0] - UNIT_SIZE;
                 break; 
@@ -162,7 +166,7 @@ public class gamePanel extends JPanel implements ActionListener{
         @Override
         public void keyPressed(KeyEvent e ){
             // Hier wird einmal festgelegt, welche Taste gedrückt wurde 
-            
+
             
         }
     }
@@ -170,3 +174,4 @@ public class gamePanel extends JPanel implements ActionListener{
 
 
 }
+
