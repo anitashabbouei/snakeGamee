@@ -133,6 +133,8 @@ public class gamePanel extends JPanel implements ActionListener {
 
     public void checkAppel(){
 
+        // hier checken wir einmal ob wir einen Apfel getroffen haben oder nicht 
+
     }
 
     public void checkCollisions(){
