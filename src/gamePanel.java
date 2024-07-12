@@ -7,9 +7,9 @@ public class gamePanel extends JPanel implements ActionListener {
 
     //deklarien alle Variable die wir brauchen werden 
     static final int SCREEN_WIDTH = 600;
-    static final int SCREEN_HIGHT = 600; 
+    static final int SCREEN_HEIGHT = 600; 
     static final int UNIT_SIZE = 25; 
-    static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HIGHT)/UNIT_SIZE; 
+    static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT)/UNIT_SIZE; 
     //für unseren Timer den wir später inplementieren wollen. Je höher unser
     //Wert, desto langsamer ist unsere Schlange 
     static final int DELAY = 75;
@@ -34,7 +34,7 @@ public class gamePanel extends JPanel implements ActionListener {
     public gamePanel(){
 
         random = new Random();
-        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HIGHT));
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.BLACK);
         // aktiviert die Fokusfähigkeit für die Komponente, sodass Eingaben 
         //von der Tastatur erhalten werden können 
@@ -55,7 +55,6 @@ public class gamePanel extends JPanel implements ActionListener {
         //draw(this.getGraphics());
         timer = new Timer(DELAY, this);
         timer.start();
-
     }
 
     public void paintComponent(Graphics g){
@@ -67,9 +66,9 @@ public class gamePanel extends JPanel implements ActionListener {
 
     public void draw(Graphics g){
 
-        for(int i = 0; i < SCREEN_HIGHT/UNIT_SIZE; i++){
+        for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++){
             //zeichen hier kästchen Grid
-            g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HIGHT);
+            g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
             g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
             System.out.println("I love food");
         }
@@ -127,7 +126,7 @@ public class gamePanel extends JPanel implements ActionListener {
      */
     public void newApple(){
         appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))* UNIT_SIZE;
-        appleY = random.nextInt((int)(SCREEN_HIGHT/UNIT_SIZE))* UNIT_SIZE;
+        appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))* UNIT_SIZE;
 
     }
 
@@ -145,7 +144,7 @@ public class gamePanel extends JPanel implements ActionListener {
         for (int i = bodyParts; i>0; i-- ) {
             if ((x[0]== x[i])&&(y[0] == y[i])){
                 
-                runnig = false; 
+                running = false; 
             }
         }
 
@@ -165,7 +164,7 @@ public class gamePanel extends JPanel implements ActionListener {
         }
 
         //check if head touches the bottom border 
-        if(y[0] > SCREEN_HIGHT){
+        if(y[0] > SCREEN_HEIGHT){
             running = false;
         }
 
@@ -183,21 +182,22 @@ public class gamePanel extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
 
-        if (running) {
-            move();
-            checkAppel();
-            checkCollisions();
 
-        }
-        repaint();
     }
 
     public class MyKeyAddaptor extends KeyAdapter{
 
         @Override
         public void keyPressed(KeyEvent e ){
-            // Hier wird einmal festgelegt, welche Taste gedrückt wurde 
 
+            // Hier wird einmal festgelegt, welche Taste gedrückt wurde 
+            if (running == true) {
+                move();
+                checkAppel();
+                checkCollisions();
+    
+            }
+            repaint();
             
         }
     }
