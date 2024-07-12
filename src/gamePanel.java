@@ -144,12 +144,34 @@ public class gamePanel extends JPanel implements ActionListener {
 
         for (int i = bodyParts; i>0; i-- ) {
             if ((x[0]== x[i])&&(y[0] == y[i])){
-
+                
+                runnig = false; 
             }
         }
 
-        //check if the snake collides with the Wall
+        //check if the snake collides with left Wall
 
+        if(x[0] < 0){
+            running = false;
+        }
+        // check if head touches right border 
+        if(x[0] > SCREEN_WIDTH){
+            running = false;
+        }
+
+        //check if head touches the upper border 
+        if(y[0] < 0){
+            running = false; 
+        }
+
+        //check if head touches the bottom border 
+        if(y[0] > SCREEN_HIGHT){
+            running = false;
+        }
+
+        if(!running){
+            timer.stop();
+        }
 
     }
 
