@@ -140,6 +140,13 @@ public class gamePanel extends JPanel implements ActionListener {
     public void checkCollisions(){
 
         //check if the head of the snake touches its body
+        //if the for loop is true that means the head colided with the body
+
+        for (int i = bodyParts; i>0; i-- ) {
+            if ((x[0]== x[i])&&(y[0] == y[i])){
+
+            }
+        }
 
         //check if the snake collides with the Wall
 
