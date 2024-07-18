@@ -40,6 +40,8 @@ public class gamePanel extends JPanel implements ActionListener {
         //von der Tastatur erhalten werden können 
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAddaptor());
+        //Wichtig hier, sonst startet das Spiel gar nicht 
+        startGame();
 
     }
 
@@ -107,14 +109,14 @@ public class gamePanel extends JPanel implements ActionListener {
             
             case 'D': 
                 y[0] = y[0] + UNIT_SIZE;
-                break       ;
+                break;
             
             case 'L': 
                 x[0] = x[0] - UNIT_SIZE;
                 break; 
 
             case 'R': 
-                x[0] = x[0] - UNIT_SIZE;
+                x[0] = x[0] + UNIT_SIZE;
                 break; 
 
         }
@@ -181,8 +183,14 @@ public class gamePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        if (running){
+            move();
+            checkApple(); 
+            checkCollisions();
 
+        }
 
+        repaint();
     }
 
     public class MyKeyAddaptor extends KeyAdapter{
