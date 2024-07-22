@@ -69,26 +69,32 @@ public class gamePanel extends JPanel implements ActionListener {
 
     public void draw(Graphics g){
 
-        for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++){
-            //zeichen hier kästchen Grid
-            g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-            g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
-            System.out.println("I love food");
-        }
+        if (running){
+            for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++){
+                //zeichen hier kästchen Grid
+                 g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+                g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
+                System.out.println("I love food");
+             }
 
-        g.setColor(Color.red);
-        g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
+            g.setColor(Color.red);
+            g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
-        //Head and Body of the Snake
+         //Head and Body of the Snake
 
-        for(int i = 0; i< bodyParts;i++){
-            if (i==0){
-                g.setColor(Color.green);
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
-            } else { 
+            for(int i = 0; i< bodyParts;i++){
+                 if (i==0){
+                     g.setColor(Color.green);
+                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                 } else { 
                 g.setColor(new Color(45, 180, 0));
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                }
             }
+
+        }
+        else{
+            gameOver(g);
         }
 
     }   
@@ -134,9 +140,13 @@ public class gamePanel extends JPanel implements ActionListener {
     }
 
     public void checkAppel(){
-
         // hier checken wir einmal ob wir einen Apfel getroffen haben oder nicht 
-
+        
+        if(x[0] == appleX && y[0] == appleY){
+            bodyParts ++;
+            applesEaten++;
+            newApple();
+        }
     }
 
     public void checkCollisions(){
@@ -177,18 +187,23 @@ public class gamePanel extends JPanel implements ActionListener {
 
     }
 
-    public void gameOver(){
+    public void gameOver(Graphics g){
+        //GameOver test 
+        g.setColor(Color.red);
+        g.setFont(new Font("Ink Free", Font.BOLD, 75));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
 
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        
+        //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
         if (running){
+
             move();
             checkApple(); 
             checkCollisions();
-
         }
 
         repaint();
