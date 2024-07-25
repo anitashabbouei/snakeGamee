@@ -75,6 +75,7 @@ public class gamePanel extends JPanel implements ActionListener {
                 g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
                 g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
                 System.out.println("I love food");
+                g.setColor(Color.WHITE);
              }
              
             g.setColor(Color.red);
@@ -208,6 +209,12 @@ public class gamePanel extends JPanel implements ActionListener {
         g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
 
     }
+
+    public void playAgain(){
+
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -215,7 +222,7 @@ public class gamePanel extends JPanel implements ActionListener {
         if (running){
 
             move();
-            checkApple(); 
+            checkApple(Graphics g); 
             checkCollisions();
         }
 
@@ -253,8 +260,6 @@ public class gamePanel extends JPanel implements ActionListener {
                 break; 
     
             }
-
-
             // Hier wird einmal festgelegt, welche Taste gedrückt wurde 
             if (running == true) {
                 move();
