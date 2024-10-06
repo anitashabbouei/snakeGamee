@@ -74,8 +74,7 @@ public class gamePanel extends JPanel implements ActionListener {
                 //zeichen hier kästchen Grid
                 g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
                 g.drawLine(0,i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
-                System.out.println("I love food");
-                g.setColor(Color.WHITE);
+                g.setColor(Color.BLACK);
              }
              
             g.setColor(Color.red);
@@ -146,7 +145,7 @@ public class gamePanel extends JPanel implements ActionListener {
 
     }
 
-    public void checkAppel(){
+    public void checkApple(){
         // hier checken wir einmal ob wir einen Apfel getroffen haben oder nicht 
         
         if(x[0] == appleX && y[0] == appleY){
